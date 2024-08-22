@@ -2,13 +2,13 @@
 
 class MiniSupermarket
 {
-    public static void Main(string[] args)
+     static void Main(string[] args)
     {
         Console.WriteLine("Bienvenido al sistema de ventas de MiniSupermarket");
         Console.WriteLine("Por Favor Ingrese Su Nombre:");
         string Nombre = Console.ReadLine();
         Console.WriteLine("Por Favor Ingrese Su Edad");
-        int Edad = int.Parse(Console.ReadLine());  
+        int Edad = int.Parse(Console.ReadLine());
         Console.WriteLine("Elija la Categoria del producto a Comprar:");
         Console.WriteLine("1. Bebidas");
         Console.WriteLine("2. Lacteos");
@@ -17,9 +17,8 @@ class MiniSupermarket
         Console.WriteLine("5. Frutas ");
         string categoria = Console.ReadLine();
 
-        double precio = 0;  
+        double precio=0;
         string Producto;
-        string tamaño;
 
         if (categoria == "1")
         {
@@ -28,12 +27,6 @@ class MiniSupermarket
             Console.WriteLine("2. Sevens 28 Lps");
             Console.WriteLine("3. Savile 23 Lps");
             Producto = Console.ReadLine();
-
-            Console.WriteLine("Elija el tamaño de su bebida:");
-            Console.WriteLine("A. Grande ");
-            Console.WriteLine("B. Mediano ");
-            Console.WriteLine("C. Pequeño");
-            tamaño = Console.ReadLine();
 
             if (Producto == "1")
             {
@@ -50,6 +43,7 @@ class MiniSupermarket
             else
             {
                 Console.WriteLine("No tenemos el producto seleccionado");
+                precio = 0;
             }
         }
         else if (categoria == "2")
@@ -75,6 +69,7 @@ class MiniSupermarket
             else
             {
                 Console.WriteLine("No tenemos el producto seleccionado");
+                precio = 0;
             }
         }
         else if (categoria == "3")
@@ -100,6 +95,7 @@ class MiniSupermarket
             else
             {
                 Console.WriteLine("No tenemos el producto seleccionado");
+                precio = 0;
             }
         }
         else if (categoria == "4")
@@ -131,6 +127,7 @@ class MiniSupermarket
             else
             {
                 Console.WriteLine("No tenemos el producto seleccionado");
+                precio = 0;
             }
         }
         else if (categoria == "5")
@@ -156,6 +153,7 @@ class MiniSupermarket
             else
             {
                 Console.WriteLine("No tenemos el producto seleccionado");
+                precio = 0;
             }
         }
         else
@@ -163,22 +161,52 @@ class MiniSupermarket
             Console.WriteLine("El numero de producto seleccionado no existe");
         }
 
-     
-        Console.WriteLine("Ingrese la cantidad que desea comprar:");
-        int cantidad = int.Parse(Console.ReadLine());
-        double subtotal = precio + cantidad;
 
-      
-        if (Edad >= 58)
+        Console.WriteLine("Elija el tamaño de su producto:");
+        Console.WriteLine("A. Grande ");
+        Console.WriteLine("B. Mediano ");
+        Console.WriteLine("C. Pequeño");
+        int tamaño = Convert.ToInt32(Console.ReadLine());
+        if (tamaño == 1)
         {
-            double descuento = subtotal * 0.30; 
-            subtotal -= descuento;
-            Console.WriteLine("Se ha aplicado un descuento del 30% por ser de la tercera edadd. Total con descuento: subtotal Lps");
+            precio = precio;
+        }
+        else if (tamaño == 2)
+        {
+            precio = precio * 1.2;
+        }
+        else if (tamaño == 3)
+        {
+            precio = precio * 1.2 * 1.3;
+        }
+        Console.WriteLine("El precio del producto es: " + precio);
+        Console.Write("Ingrese la cantidad deseada: ");
+        int cantidad = Convert.ToInt32(Console.ReadLine());
+        double subtotal = (precio * cantidad);
+        double
+        impuesto = 0;
+        if (categoria == "1")
+        {
+            impuesto = 0;
+        }
+        else
+        {
+            impuesto = subtotal * 0.15;
+        }
+        double descuento = 0;
+        if (Edad >= 60)
+        {
+            descuento = subtotal * 0.3;
+        }
+        else
+        {
+            descuento = 0;
         }
 
-        
-        Console.WriteLine($"El subtotal de su compra es: {subtotal} Lps");
+    double total =subtotal+impuesto-descuento;
+        Console.WriteLine("El valor a pagar es de:" + total,"Usted esta pagando un impuesto de:" + impuesto,"Y un descuento de:" + descuento);
+        Console.WriteLine($"El valor a pagar es de;); {total} Usted esta pagando un impuesto de: {impuesto} Y un descuento de: {descuento} ");
 
-        Console.WriteLine("Su Compra ha sido exitosa");
+        
     }
 }
